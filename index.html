@@ -4,113 +4,199 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Porsche Fan Site</title>
+    <title>Porsche Fan</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
     <style>
-        * {
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #fff;
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
             color: #111;
-            line-height: 1.6;
+            min-height: 100vh;
         }
 
+        /* NAV */
         nav {
             display: flex;
-            gap: 2rem;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid #ddd;
-            position: sticky;
-            top: 0;
-            background: white;
-            z-index: 100;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 60px;
+            border-bottom: 1px solid #e8e8e8;
         }
 
-        nav a {
-            text-decoration: none;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
             color: #111;
-            font-size: 1rem;
-            transition: 0.3s;
         }
 
-        nav a:hover {
-            color: #d5001c;
-            /* Porsche Red */
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
         }
 
-        nav a.active {
-            font-weight: bold;
-            border-bottom: 2px solid #d5001c;
+        .nav-links li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color 0.2s;
         }
 
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #111;
+        }
+
+        .nav-links li a.active {
+            font-weight: 500;
+            border-bottom: 1.5px solid #111;
+            padding-bottom: 2px;
+        }
+
+        /* PAGES */
         .page {
             display: none;
-            padding: 3rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
         }
 
         .page.active {
             display: block;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* HOME */
+        .home-header {
+            padding: 70px 60px 40px;
+            max-width: 720px;
         }
 
-        p {
+        .home-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .home-header p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
             color: #444;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
         }
 
-        /* Porsche Image Styling */
-        .image-container {
+        .photo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-top: 2rem;
+            padding: 40px 60px 80px;
         }
 
-        .porsche-photo {
+        .photo-grid img {
             width: 100%;
-            height: 400px;
+            height: 320px;
             object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .description-box {
-            background: #f9f9f9;
-            padding: 2rem;
-            border-left: 5px solid #d5001c;
-            margin-top: 2rem;
-        }
-
-        .projects-list,
-        .contact-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .projects-list li {
-            padding: 1.5rem;
-            border: 1px solid #ddd;
-            margin-bottom: 1rem;
             border-radius: 4px;
+            filter: grayscale(8%);
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        @media (max-width: 768px) {
-            .image-container {
-                grid-template-columns: 1fr;
-            }
+        .photo-grid img:hover {
+            transform: scale(1.02);
+            filter: grayscale(0%);
+        }
+
+        .photo-caption {
+            font-size: 0.78rem;
+            color: #888;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        /* ABOUT */
+        .about-wrap,
+        .projects-wrap {
+            padding: 70px 60px;
+            max-width: 680px;
+        }
+
+        .about-wrap h2,
+        .projects-wrap h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 28px;
+            color: #111;
+        }
+
+        .about-wrap p {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 18px;
+        }
+
+        /* PROJECTS */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-top: 10px;
+        }
+
+        .project-card {
+            border: 1px solid #e4e4e4;
+            border-radius: 6px;
+            padding: 28px 32px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: #bbb;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .project-card p {
+            font-size: 0.93rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: #f3f3f3;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 2px;
+            margin-right: 6px;
         }
     </style>
 </head>
@@ -118,80 +204,102 @@
 <body>
 
     <nav>
-        <a href="#" onclick="show('home')" id="nav-home" class="active">Home</a>
-        <a href="#" onclick="show('about')" id="nav-about">About</a>
-        <a href="#" onclick="show('projects')" id="nav-projects">Projects</a>
-        <a href="#" onclick="show('contact')" id="nav-contact">Contact</a>
+        <div class="logo">Porsche Obsessed</div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="showPage('home', this)">Home</a></li>
+            <li><a href="#" onclick="showPage('about', this)">About</a></li>
+            <li><a href="#" onclick="showPage('projects', this)">Projects</a></li>
+        </ul>
     </nav>
 
+    <!-- HOME -->
     <div id="home" class="page active">
-        <h1>Engineered for Magic</h1>
-        <p>Welcome to my personal corner of the internet. While I do many things, one of my greatest passions is the
-            engineering and heritage of Porsche.</p>
-
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop"
-                alt="Classic Silver Porsche" class="porsche-photo">
-            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070&auto=format&fit=crop"
-                alt="Modern Porsche 911" class="porsche-photo">
+        <div class="home-header">
+            <h1>Life is too short<br>for ordinary cars.</h1>
+            <p>
+                There's something about a Porsche that no other car can replicate — the way the engine sounds behind
+                you, the precision of every curve, the philosophy that performance and beauty aren't mutually exclusive.
+                I've been captivated by Porsche since I was a kid, and that obsession has only grown deeper with time.
+                <br><br>
+                Whether it's the iconic 911, the raw 718 Spyder, or the stunning Taycan — every Porsche tells a story of
+                engineering done right. This little corner of the web is my tribute to that love.
+            </p>
         </div>
 
-        <div class="description-box">
-            <h3>Why I Love These Cars</h3>
-            <p>There is no substitute. I absolutely love Porsches because they represent the perfect balance between
-                daily usability and track-ready performance. Whether it's the classic air-cooled 911s or the
-                cutting-edge Taycan, the design language and "form follows function" philosophy are unmatched in the
-                automotive world.</p>
+        <div class="photo-grid">
+            <div>
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Porsche 911" />
+                <p class="photo-caption">Porsche 911 — Timeless Icon</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900&q=80" alt="Porsche on road" />
+                <p class="photo-caption">Built for the road ahead</p>
+            </div>
         </div>
     </div>
 
+    <!-- ABOUT -->
     <div id="about" class="page">
-        <h1>About Me</h1>
-        <p>I'm a creator and enthusiast who values precision and design. When I'm not looking at car specs, I'm working
-            on new projects and exploring technology.</p>
+        <div class="about-wrap">
+            <h2>About Me</h2>
+            <p>
+                I'm a car enthusiast who found their forever brand the moment I first saw a Porsche 911 Carrera in
+                person. The silhouette, the stance, the rear-engine layout — everything about it defied convention and
+                won me over completely.
+            </p>
+            <p>
+                Beyond cars, I enjoy photography, long drives on open roads, and learning everything I can about
+                automotive engineering. Porsche isn't just a brand to me — it's a benchmark for how things should be
+                done.
+            </p>
+            <p>
+                This site is a small personal project — a place to share my appreciation for one of the greatest
+                automotive legacies ever built.
+            </p>
+        </div>
     </div>
 
+    <!-- PROJECTS -->
     <div id="projects" class="page">
-        <h1>Projects</h1>
-        <ul class="projects-list">
-            <li>
-                <h3>Project One</h3>
-                <p>A short description of this project.</p>
-            </li>
-            <li>
-                <h3>Project Two</h3>
-                <p>A short description of this project.</p>
-            </li>
-        </ul>
-    </div>
+        <div class="projects-wrap">
+            <h2>Projects</h2>
+            <div class="project-list">
 
-    <div id="contact" class="page">
-        <h1>Contact</h1>
-        <p>Feel free to reach out through any of the channels below.</p>
-        <ul class="contact-list">
-            <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
-            <li>GitHub: <a href="#">github.com/yourname</a></li>
-        </ul>
+                <div class="project-card">
+                    <h3>Porsche Model Archive</h3>
+                    <p>A personal database cataloguing every Porsche model from the 356 to the current lineup, with
+                        specs, production years, and notes on what makes each one special.</p>
+                    <span class="tag">Research</span>
+                    <span class="tag">Database</span>
+                </div>
+
+                <div class="project-card">
+                    <h3>Track Day Photography</h3>
+                    <p>A photo journal from local track days — capturing Porsches in motion, from amateur trackday
+                        mornings to club racing events.</p>
+                    <span class="tag">Photography</span>
+                    <span class="tag">Motorsport</span>
+                </div>
+
+                <div class="project-card">
+                    <h3>Dream Garage Configurator</h3>
+                    <p>A fun weekend project — a web app that lets you build your dream Porsche garage by picking
+                        models, colors, and spec options.</p>
+                    <span class="tag">Web App</span>
+                    <span class="tag">Design</span>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <script>
-        function show(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-
-            // Remove active class from all nav links
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            // Show the current page
-            document.getElementById(pageId).classList.add('active');
-
-            // Add active class to the clicked nav link
-            document.getElementById('nav-' + pageId).classList.add('active');
-
-            // Scroll to top when switching pages
-            window.scrollTo(0, 0);
+        function showPage(id, link) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            link.classList.add('active');
+            event.preventDefault();
         }
     </script>
 
